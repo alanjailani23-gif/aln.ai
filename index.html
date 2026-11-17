@@ -67,6 +67,142 @@ footer{text-align:center;padding:30px;color:#888;border-top:1px solid #292039;fo
 </section>
 
 <footer>© 2026 ALN.AI — Your AI Creative Studio</footer>
+
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/13.4.0/firebase-app.js";
+  import {
+    getAuth,
+    createUserWithEmailAndPassword,
+    signInWithEmailAndPassword,
+    signOut,
+    onAuthStateChanged
+  } from "https://www.gstatic.com/firebasejs/13.4.0/firebase-auth.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyDSFLzvJqy5QYNNeaG4mHld7KEy8dNzd7M",
+    authDomain: "alanai-61291.firebaseapp.com",
+    projectId: "alanai-61291",
+    storageBucket: "alanai-61291.firebasestorage.app",
+    messagingSenderId: "150154368588",
+    appId: "1:150154368588:web:1c5358520f168dd77c86e9",
+    measurementId: "G-TVRQZCQB7C"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+
+  const style = document.createElement("style");
+  style.textContent = `
+    #aln-login-btn {
+      position:fixed;right:20px;bottom:20px;z-index:9999;
+      background:#8b5cf6;color:white;border:0;border-radius:30px;
+      padding:14px 22px;font-weight:bold;cursor:pointer;
+    }
+    #aln-modal {
+      display:none;position:fixed;inset:0;z-index:10000;
+      background:#000c;align-items:center;justify-content:center;
+      padding:20px;
+    }
+    #aln-card {
+      background:#171323;color:white;width:100%;max-width:360px;
+      padding:25px;border-radius:18px;font-family:Arial;
+      border:1px solid #7046bd;
+    }
+    #aln-card input {
+      width:100%;box-sizing:border-box;padding:13px;margin:8px 0;
+      border-radius:8px;border:1px solid #555;background:#242033;
+      color:white;
+    }
+    #aln-card button {
+      width:100%;padding:13px;margin-top:10px;border:0;
+      border-radius:8px;background:#8b5cf6;color:white;
+      font-weight:bold;cursor:pointer;
+    }
+    #aln-close {background:#393344!important;}
+    #aln-message {font-size:13px;color:#c4b5fd;margin-top:12px;}
+  `;
+  document.head.appendChild(style);
+
+  document.body.insertAdjacentHTML("beforeend", `
+    <button id="aln-login-btn">Login / Daftar</button>
+    <div id="aln-modal">
+      <div id="aln-card">
+        <h2>ALN.AI</h2>
+        <p id="aln-status">Masuk atau buat akun baru</p>
+        <input id="aln-email" type="email" placeholder="Alamat email">
+        <input id="aln-password" type="password" placeholder="Password (minimal 6 karakter)">
+        <button id="aln-login">Login</button>
+        <button id="aln-register">Buat Akun</button>
+        <button id="aln-logout" style="display:none">Logout</button>
+        <button id="aln-close">Tutup</button>
+        <p id="aln-message"></p>
+      </div>
+    </div>
+  `);
+
+  const modal = document.getElementById("aln-modal");
+  const message = document.getElementById("aln-message");
+  const email = document.getElementById("aln-email");
+  const password = document.getElementById("aln-password");
+
+  document.getElementById("aln-login-btn").onclick = () => {
+    modal.style.display = "flex";
+  };
+
+  document.getElementById("aln-close").onclick = () => {
+    modal.style.display = "none";
+  };
+
+  document.getElementById("aln-register").onclick = async () => {
+    try {
+      await createUserWithEmailAndPassword(
+        auth, email.value.trim(), password.value
+      );
+      message.textContent = "Akun berhasil dibuat!";
+    } catch (error) {
+      message.textContent = error.message;
+    }
+  };
+
+  document.getElementById("aln-login").onclick = async () => {
+    try {
+      await signInWithEmailAndPassword(
+        auth, email.value.trim(), password.value
+      );
+      message.textContent = "Login berhasil!";
+    } catch (error) {
+      message.textContent = error.message;
+    }
+  };
+
+  document.getElementById("aln-logout").onclick = async () => {
+    try {
+      await signOut(auth);
+      message.textContent = "Kamu sudah logout.";
+    } catch (error) {
+      message.textContent = error.message;
+    }
+  };
+
+  onAuthStateChanged(auth, (user) => {
+    const status = document.getElementById("aln-status");
+    const logout = document.getElementById("aln-logout");
+
+    if (user) {
+      status.textContent = "Login sebagai: " + user.email;
+      logout.style.display = "block";
+      document.getElementById("aln-login").style.display = "none";
+      document.getElementById("aln-register").style.display = "none";
+      document.getElementById("aln-login-btn").textContent = "Akun Saya";
+    } else {
+      status.textContent = "Masuk atau buat akun baru";
+      logout.style.display = "none";
+      document.getElementById("aln-login").style.display = "block";
+      document.getElementById("aln-register").style.display = "block";
+      document.getElementById("aln-login-btn").textContent = "Login / Daftar";
+    }
+  });
+</script>
 </body>
   </html>
   
