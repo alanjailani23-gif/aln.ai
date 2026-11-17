@@ -5,204 +5,456 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#090711">
-<title>ALN.AI - AI Creative Studio</title>
+<title>ALN.AI — AI Creative Studio</title>
+<meta name="description" content="ALN.AI adalah studio kreativitas berbasis Artificial Intelligence.">
+
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:Arial,sans-serif;background:#090711;color:#fff}
-header{padding:20px 6%;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #292039}
-.logo{font-size:27px;font-weight:900;color:#b78aff}
-nav a{color:#ddd;text-decoration:none;margin-left:18px;font-size:13px}
-.hero{text-align:center;padding:85px 20px 65px;background:radial-gradient(ellipse at top,#40206b 0%,#130d20 45%,#090711 80%)}
-.tag{color:#c9a4ff;border:1px solid #7548a4;padding:8px 15px;border-radius:30px;font-size:12px}
-h1{font-size:clamp(40px,9vw,70px);margin:28px 0 15px}
-h1 span{color:#b78aff}
-.hero p{color:#c1b8cf;line-height:1.7;max-width:500px;margin:0 auto 28px}
-.btn{display:inline-block;background:#9856e9;color:white;padding:14px 25px;border-radius:10px;text-decoration:none;font-weight:bold}
-section{padding:55px 6%}
-.heading{text-align:center;margin-bottom:30px}
-.heading h2{font-size:28px;margin-bottom:10px}
-.heading p{color:#aaa}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px}
-.item{background:#171321;border:1px solid #342744;padding:25px;border-radius:17px}
-.item .icon{font-size:35px;margin-bottom:15px}
-.item h3{margin-bottom:10px}
-.item p{font-size:13px;color:#aaa;line-height:1.6}
-.price{color:#c69bff;font-weight:bold;margin-top:15px}
-.cta{text-align:center;background:#191125;border-radius:20px;padding:40px 20px}
-footer{text-align:center;padding:30px;color:#888;border-top:1px solid #292039;font-size:12px}
+:root{
+  --bg:#090711;
+  --panel:#151121;
+  --purple:#a879ff;
+  --light:#d5baff;
+  --muted:#aaa2b9;
+  --border:#302441;
+}
+body{
+  font-family:Arial,sans-serif;
+  background:var(--bg);
+  color:white;
+  line-height:1.6;
+}
+button,a{font:inherit}
+a{color:inherit;text-decoration:none}
+header{
+  position:sticky;top:0;z-index:50;
+  display:flex;justify-content:space-between;
+  align-items:center;padding:17px 7%;
+  background:#090711eF;
+  backdrop-filter:blur(15px);
+  border-bottom:1px solid var(--border);
+}
+.logo{
+  font-size:27px;font-weight:900;
+  letter-spacing:1px;color:var(--purple);
+}
+.logo span{color:white}
+nav{display:flex;gap:24px;align-items:center}
+nav a{font-size:13px;color:#d4cddd}
+nav a:hover{color:var(--purple)}
+.login-btn,.main-btn{
+  border:0;border-radius:10px;
+  background:linear-gradient(120deg,#8651dc,#b17aff);
+  color:white;font-weight:bold;
+  padding:12px 19px;cursor:pointer;
+}
+.hero{
+  position:relative;overflow:hidden;
+  text-align:center;padding:105px 20px 100px;
+  background:
+  radial-gradient(ellipse at 50% 0%,#542b8870,transparent 65%),
+  linear-gradient(180deg,#130d20,#090711);
+}
+.hero:before{
+  content:"";position:absolute;
+  width:300px;height:300px;
+  border-radius:50%;background:#8b5cf620;
+  filter:blur(70px);left:-100px;top:100px;
+}
+.tag{
+  display:inline-block;
+  color:var(--light);
+  border:1px solid #8b5cf680;
+  background:#8b5cf61c;
+  padding:7px 15px;border-radius:30px;
+  font-size:11px;letter-spacing:2px;
+}
+.hero h1{
+  font-size:clamp(43px,9vw,78px);
+  line-height:1.08;margin:28px auto 20px;
+  max-width:850px;letter-spacing:-2px;
+}
+.hero h1 span{
+  background:linear-gradient(90deg,#a879ff,#e3caff);
+  -webkit-background-clip:text;
+  color:transparent;
+}
+.hero p{
+  color:#c0b6ce;max-width:570px;
+  margin:0 auto 30px;font-size:15px;
+}
+.hero-actions{
+  display:flex;justify-content:center;
+  gap:12px;flex-wrap:wrap;
+}
+.secondary-btn{
+  padding:12px 20px;border-radius:10px;
+  border:1px solid #72549a;color:#e0d2f5;
+}
+section{padding:75px 7%}
+.section-title{text-align:center;margin-bottom:38px}
+.section-title small{color:var(--purple);letter-spacing:2px}
+.section-title h2{font-size:32px;margin:8px 0}
+.section-title p{color:var(--muted);font-size:14px}
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:20px;
+}
+.card{
+  background:linear-gradient(145deg,#1c1729,#100d19);
+  border:1px solid var(--border);
+  border-radius:18px;padding:26px;
+  transition:.25s;
+}
+.card:hover{
+  transform:translateY(-5px);
+  border-color:#9867dc;
+  box-shadow:0 12px 35px #8b5cf615;
+}
+.card-icon{
+  width:52px;height:52px;
+  display:grid;place-items:center;
+  font-size:27px;border-radius:14px;
+  background:#8b5cf624;margin-bottom:20px;
+}
+.card h3{font-size:18px;margin-bottom:9px}
+.card p{font-size:13px;color:var(--muted);min-height:62px}
+.card-status{
+  display:inline-block;margin-top:19px;
+  font-size:11px;color:#c9a7ff;
+  border:1px solid #8256b566;
+  background:#8b5cf61c;
+  border-radius:20px;padding:5px 11px;
+}
+.about{
+  background:linear-gradient(120deg,#211535,#120e1d);
+  border:1px solid var(--border);
+  border-radius:22px;padding:45px 25px;
+  text-align:center;
+}
+.about h2{font-size:30px;margin-bottom:12px}
+.about p{color:var(--muted);max-width:550px;margin:auto}
+.about .main-btn{display:inline-block;margin-top:24px}
+footer{
+  border-top:1px solid var(--border);
+  padding:30px 7%;text-align:center;
+  color:#888;font-size:12px;
+}
+#aln-login-btn{
+  position:fixed;right:20px;bottom:20px;
+  z-index:1000;border:0;border-radius:30px;
+  background:linear-gradient(120deg,#8651dc,#b17aff);
+  color:white;padding:14px 21px;
+  font-weight:bold;box-shadow:0 5px 25px #8b5cf650;
+  cursor:pointer;
+}
+#aln-modal{
+  display:none;position:fixed;inset:0;
+  z-index:2000;background:#000c;
+  align-items:center;justify-content:center;
+  padding:18px;
+}
+#aln-card{
+  width:100%;max-width:390px;
+  padding:27px;border-radius:20px;
+  background:#171323;border:1px solid #7650a5;
+  box-shadow:0 20px 80px #0009;
+}
+#aln-card h2{font-size:26px;color:var(--purple)}
+#aln-card .sub{font-size:13px;color:var(--muted);margin:5px 0 17px}
+#aln-card input{
+  width:100%;padding:14px;margin:7px 0;
+  border-radius:9px;border:1px solid #443751;
+  background:#0e0b17;color:white;outline:none;
+}
+#aln-card input:focus{border-color:var(--purple)}
+#aln-card button{
+  width:100%;padding:13px;margin-top:9px;
+  border:0;border-radius:9px;
+  background:linear-gradient(120deg,#8651dc,#b17aff);
+  color:white;font-weight:bold;cursor:pointer;
+}
+#aln-card button:disabled{opacity:.5}
+#aln-card .close{
+  background:#393344;
+}
+#aln-message{
+  color:#d5baff;font-size:12px;
+  margin-top:13px;overflow-wrap:anywhere;
+}
+#aln-logout{display:none}
+#aln-account{display:none}
+@media(max-width:600px){
+  header{padding:14px 5%}
+  nav{gap:12px}
+  nav a{font-size:11px}
+  .logo{font-size:23px}
+  .hero{padding:80px 18px}
+  section{padding:60px 5%}
+  .section-title h2{font-size:27px}
+}
 </style>
 </head>
+
 <body>
+
 <header>
-<div class="logo">ALN.AI</div>
-<nav><a href="#fitur">Fitur</a><a href="#harga">Harga</a></nav>
+  <div class="logo">ALN<span>.AI</span></div>
+  <nav>
+    <a href="#fitur">Fitur</a>
+    <a href="#tentang">Tentang</a>
+    <button class="login-btn" onclick="document.getElementById('aln-modal').style.display='flex'">Masuk</button>
+  </nav>
 </header>
 
+<main>
 <div class="hero">
-<span class="tag">✦ YOUR AI CREATIVE STUDIO</span>
-<h1>Create Beyond<br><span>Imagination.</span></h1>
-<p>Ubah ide menjadi karya luar biasa dengan teknologi Artificial Intelligence. Edit foto, fashion, dan ciptakan video menggunakan AI.</p>
-<a class="btn" href="#fitur">Jelajahi AI Studio →</a>
+  <span class="tag">✦ YOUR AI CREATIVE STUDIO</span>
+  <h1>Create Beyond<br><span>Imagination.</span></h1>
+  <p>
+    Wujudkan kreativitas tanpa batas dengan Artificial Intelligence.
+    Edit foto, eksplorasi fashion, dan ciptakan video dalam satu platform.
+  </p>
+  <div class="hero-actions">
+    <a class="main-btn" href="#fitur">Jelajahi Studio AI</a>
+    <a class="secondary-btn" href="#tentang">Pelajari ALN.AI</a>
+  </div>
 </div>
 
 <section id="fitur">
-<div class="heading">
-<h2>Explore AI Studio</h2>
-<p>Semua kreativitas dalam satu platform.</p>
-</div>
-<div class="grid">
-<div class="item"><div class="icon">📸</div><h3>AI Photo Editor</h3><p>Edit foto, ubah background, tingkatkan kualitas dan ciptakan visual menakjubkan.</p><div class="price">Coming Soon</div></div>
-<div class="item"><div class="icon">👗</div><h3>AI Fashion Editor</h3><p>Coba pakaian, gaya, dan penampilan baru menggunakan kecerdasan buatan.</p><div class="price">Coming Soon</div></div>
-<div class="item"><div class="icon">🎬</div><h3>AI Video Studio</h3><p>Wujudkan ide menjadi video kreatif dengan teknologi generative AI.</p><div class="price">Coming Soon</div></div>
-<div class="item"><div class="icon">🖼️</div><h3>My Creations</h3><p>Tempat menyimpan dan mengelola hasil karya kreatif kamu.</p><div class="price">Coming Soon</div></div>
-</div>
+  <div class="section-title">
+    <small>CREATIVE TOOLS</small>
+    <h2>Explore AI Studio</h2>
+    <p>Temukan berbagai alat kreativitas dalam satu tempat.</p>
+  </div>
+
+  <div class="grid">
+    <div class="card">
+      <div class="card-icon">📸</div>
+      <h3>AI Photo Editor</h3>
+      <p>Edit foto, ubah background, tingkatkan kualitas, dan buat visual baru dengan AI.</p>
+      <span class="card-status">Coming Soon</span>
+    </div>
+
+    <div class="card">
+      <div class="card-icon">👗</div>
+      <h3>AI Fashion Editor</h3>
+      <p>Eksplorasi outfit, gaya berpakaian, dan penampilan baru menggunakan AI.</p>
+      <span class="card-status">Coming Soon</span>
+    </div>
+
+    <div class="card">
+      <div class="card-icon">🎬</div>
+      <h3>AI Video Studio</h3>
+      <p>Ubah ide dan gambar menjadi video kreatif dengan teknologi generative AI.</p>
+      <span class="card-status">Coming Soon</span>
+    </div>
+
+    <div class="card">
+      <div class="card-icon">🖼️</div>
+      <h3>My Creations</h3>
+      <p>Kelola dan lihat kembali hasil karya yang telah kamu buat di ALN.AI.</p>
+      <span class="card-status">Coming Soon</span>
+    </div>
+  </div>
 </section>
 
-<section id="harga">
-<div class="cta">
-<h2>Unleash Your Creativity</h2>
-<p style="color:#bbb;margin:15px 0 25px">Bersiaplah untuk pengalaman AI yang lebih kreatif.</p>
-<a class="btn" href="mailto:admin@aln.ai">Hubungi Kami</a>
-</div>
+<section id="tentang">
+  <div class="about">
+    <span class="tag">THE FUTURE IS CREATIVE</span>
+    <h2 style="margin-top:18px">Your Ideas. Our AI.</h2>
+    <p>
+      ALN.AI dibangun untuk membantu siapa pun mengubah imajinasi
+      menjadi karya digital yang menarik dan kreatif.
+    </p>
+    <a class="main-btn" href="mailto:admin@aln.ai">Hubungi Kami</a>
+  </div>
 </section>
+</main>
 
-<footer>© 2026 ALN.AI — Your AI Creative Studio</footer>
+<footer>
+  © 2026 ALN.AI — Your AI Creative Studio
+</footer>
+
+<div id="aln-modal">
+  <div id="aln-card">
+    <h2>ALN.AI</h2>
+    <p class="sub" id="aln-status">Masuk atau buat akun baru</p>
+
+    <div id="aln-form">
+      <input id="aln-email" type="email" placeholder="Alamat email" autocomplete="email">
+      <input id="aln-password" type="password" placeholder="Password minimal 6 karakter" autocomplete="current-password">
+      <button id="aln-login">Login</button>
+      <button id="aln-register">Buat Akun</button>
+    </div>
+
+    <div id="aln-account">
+      <p id="aln-account-email" style="font-size:13px;color:#ddd;overflow-wrap:anywhere"></p>
+      <p style="font-size:13px;color:#c5b1e7;margin-top:12px">Paket: Free</p>
+      <p style="font-size:13px;color:#c5b1e7">Saldo kredit: 0</p>
+      <button id="aln-logout">Logout</button>
+    </div>
+
+    <button class="close" id="aln-close">Tutup</button>
+    <p id="aln-message" aria-live="polite"></p>
+  </div>
+</div>
 
 <script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/13.4.0/firebase-app.js";
-  import {
-    getAuth,
-    createUserWithEmailAndPassword,
-    signInWithEmailAndPassword,
-    signOut,
-    onAuthStateChanged
-  } from "https://www.gstatic.com/firebasejs/13.4.0/firebase-auth.js";
+import { initializeApp } from "https://www.gstatic.com/firebasejs/13.4.0/firebase-app.js";
 
-  const firebaseConfig = {
-    apiKey: "AIzaSyDSFLzvJqy5QYNNeaG4mHld7KEy8dNzd7M",
-    authDomain: "alanai-61291.firebaseapp.com",
-    projectId: "alanai-61291",
-    storageBucket: "alanai-61291.firebasestorage.app",
-    messagingSenderId: "150154368588",
-    appId: "1:150154368588:web:1c5358520f168dd77c86e9",
-    measurementId: "G-TVRQZCQB7C"
-  };
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  signOut,
+  onAuthStateChanged
+} from "https://www.gstatic.com/firebasejs/13.4.0/firebase-auth.js";
 
-  const app = initializeApp(firebaseConfig);
-  const auth = getAuth(app);
+import {
+  getFirestore,
+  doc,
+  getDoc,
+  setDoc,
+  serverTimestamp
+} from "https://www.gstatic.com/firebasejs/13.4.0/firebase-firestore.js";
 
-  const style = document.createElement("style");
-  style.textContent = `
-    #aln-login-btn {
-      position:fixed;right:20px;bottom:20px;z-index:9999;
-      background:#8b5cf6;color:white;border:0;border-radius:30px;
-      padding:14px 22px;font-weight:bold;cursor:pointer;
-    }
-    #aln-modal {
-      display:none;position:fixed;inset:0;z-index:10000;
-      background:#000c;align-items:center;justify-content:center;
-      padding:20px;
-    }
-    #aln-card {
-      background:#171323;color:white;width:100%;max-width:360px;
-      padding:25px;border-radius:18px;font-family:Arial;
-      border:1px solid #7046bd;
-    }
-    #aln-card input {
-      width:100%;box-sizing:border-box;padding:13px;margin:8px 0;
-      border-radius:8px;border:1px solid #555;background:#242033;
-      color:white;
-    }
-    #aln-card button {
-      width:100%;padding:13px;margin-top:10px;border:0;
-      border-radius:8px;background:#8b5cf6;color:white;
-      font-weight:bold;cursor:pointer;
-    }
-    #aln-close {background:#393344!important;}
-    #aln-message {font-size:13px;color:#c4b5fd;margin-top:12px;}
-  `;
-  document.head.appendChild(style);
+const firebaseConfig = {
+  apiKey: "AIzaSyDSFLzvJqy5QYNNeaG4mHld7KEy8dNzd7M",
+  authDomain: "alanai-61291.firebaseapp.com",
+  projectId: "alanai-61291",
+  storageBucket: "alanai-61291.firebasestorage.app",
+  messagingSenderId: "150154368588",
+  appId: "1:150154368588:web:1c5358520f168dd77c86e9",
+  measurementId: "G-TVRQZCQB7C"
+};
 
-  document.body.insertAdjacentHTML("beforeend", `
-    <button id="aln-login-btn">Login / Daftar</button>
-    <div id="aln-modal">
-      <div id="aln-card">
-        <h2>ALN.AI</h2>
-        <p id="aln-status">Masuk atau buat akun baru</p>
-        <input id="aln-email" type="email" placeholder="Alamat email">
-        <input id="aln-password" type="password" placeholder="Password (minimal 6 karakter)">
-        <button id="aln-login">Login</button>
-        <button id="aln-register">Buat Akun</button>
-        <button id="aln-logout" style="display:none">Logout</button>
-        <button id="aln-close">Tutup</button>
-        <p id="aln-message"></p>
-      </div>
-    </div>
-  `);
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
 
-  const modal = document.getElementById("aln-modal");
-  const message = document.getElementById("aln-message");
-  const email = document.getElementById("aln-email");
-  const password = document.getElementById("aln-password");
+const modal = document.getElementById("aln-modal");
+const message = document.getElementById("aln-message");
+const email = document.getElementById("aln-email");
+const password = document.getElementById("aln-password");
+const form = document.getElementById("aln-form");
+const account = document.getElementById("aln-account");
 
-  document.getElementById("aln-login-btn").onclick = () => {
-    modal.style.display = "flex";
-  };
+const loginButton = document.getElementById("aln-login");
+const registerButton = document.getElementById("aln-register");
+const logoutButton = document.getElementById("aln-logout");
 
-  document.getElementById("aln-close").onclick = () => {
-    modal.style.display = "none";
-  };
+document.getElementById("aln-close").onclick = () => {
+  modal.style.display = "none";
+};
 
-  document.getElementById("aln-register").onclick = async () => {
+modal.addEventListener("click", (event) => {
+  if (event.target === modal) modal.style.display = "none";
+});
+
+async function ensureUserProfile(user) {
+  const userRef = doc(db, "users", user.uid);
+  const userSnap = await getDoc(userRef);
+
+  if (!userSnap.exists()) {
+    await setDoc(userRef, {
+      uid: user.uid,
+      email: user.email,
+      credits: 0,
+      plan: "free",
+      createdAt: serverTimestamp()
+    });
+  }
+}
+
+function setBusy(busy) {
+  loginButton.disabled = busy;
+  registerButton.disabled = busy;
+}
+
+registerButton.onclick = async () => {
+  const userEmail = email.value.trim();
+  const userPassword = password.value;
+
+  if (!userEmail || !userPassword) {
+    message.textContent = "Isi email dan password terlebih dahulu.";
+    return;
+  }
+
+  try {
+    setBusy(true);
+    message.textContent = "Membuat akun...";
+    await createUserWithEmailAndPassword(auth, userEmail, userPassword);
+    message.textContent = "Akun berhasil dibuat. Menyiapkan profil...";
+  } catch (error) {
+    message.textContent = "Gagal daftar: " + error.message;
+  } finally {
+    setBusy(false);
+  }
+};
+
+loginButton.onclick = async () => {
+  const userEmail = email.value.trim();
+  const userPassword = password.value;
+
+  if (!userEmail || !userPassword) {
+    message.textContent = "Isi email dan password terlebih dahulu.";
+    return;
+  }
+
+  try {
+    setBusy(true);
+    message.textContent = "Sedang masuk...";
+    await signInWithEmailAndPassword(auth, userEmail, userPassword);
+    message.textContent = "Login berhasil!";
+  } catch (error) {
+    message.textContent = "Gagal login: " + error.message;
+  } finally {
+    setBusy(false);
+  }
+};
+
+logoutButton.onclick = async () => {
+  try {
+    await signOut(auth);
+    message.textContent = "Kamu berhasil logout.";
+  } catch (error) {
+    message.textContent = "Gagal logout: " + error.message;
+  }
+};
+
+onAuthStateChanged(auth, async (user) => {
+  const status = document.getElementById("aln-status");
+  const loginBtn = document.querySelector(".login-btn");
+  const floatingBtn = document.getElementById("aln-login-btn");
+
+  if (user) {
+    form.style.display = "none";
+    account.style.display = "block";
+    document.getElementById("aln-account-email").textContent = user.email || "";
+    loginBtn.textContent = "Akun Saya";
+    if (floatingBtn) floatingBtn.textContent = "Akun Saya";
+
+    status.textContent = "Memeriksa profil akun...";
+
     try {
-      await createUserWithEmailAndPassword(
-        auth, email.value.trim(), password.value
-      );
-      message.textContent = "Akun berhasil dibuat!";
+      await ensureUserProfile(user);
+      status.textContent = "Akun kamu sudah terhubung.";
     } catch (error) {
-      message.textContent = error.message;
+      status.textContent = "Profil belum dapat disiapkan.";
+      message.textContent = "Kesalahan profil: " + error.message;
+      console.error(error);
     }
-  };
-
-  document.getElementById("aln-login").onclick = async () => {
-    try {
-      await signInWithEmailAndPassword(
-        auth, email.value.trim(), password.value
-      );
-      message.textContent = "Login berhasil!";
-    } catch (error) {
-      message.textContent = error.message;
-    }
-  };
-
-  document.getElementById("aln-logout").onclick = async () => {
-    try {
-      await signOut(auth);
-      message.textContent = "Kamu sudah logout.";
-    } catch (error) {
-      message.textContent = error.message;
-    }
-  };
-
-  onAuthStateChanged(auth, (user) => {
-    const status = document.getElementById("aln-status");
-    const logout = document.getElementById("aln-logout");
-
-    if (user) {
-      status.textContent = "Login sebagai: " + user.email;
-      logout.style.display = "block";
-      document.getElementById("aln-login").style.display = "none";
-      document.getElementById("aln-register").style.display = "none";
-      document.getElementById("aln-login-btn").textContent = "Akun Saya";
-    } else {
-      status.textContent = "Masuk atau buat akun baru";
-      logout.style.display = "none";
-      document.getElementById("aln-login").style.display = "block";
-      document.getElementById("aln-register").style.display = "block";
-      document.getElementById("aln-login-btn").textContent = "Login / Daftar";
-    }
-  });
+  } else {
+    form.style.display = "block";
+    account.style.display = "none";
+    status.textContent = "Masuk atau buat akun baru";
+    loginBtn.textContent = "Masuk";
+    if (floatingBtn) floatingBtn.textContent = "Login / Daftar";
+  }
+});
 </script>
+
 </body>
-  </html>
-  
+</html>
