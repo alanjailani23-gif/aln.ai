@@ -432,6 +432,7 @@ onAuthStateChanged(auth, async (user) => {
   if (user) {
     form.style.display = "none";
     account.style.display = "block";
+    logoutButton.style.display = "block";
     document.getElementById("aln-account-email").textContent = user.email || "";
     loginBtn.textContent = "Akun Saya";
     if (floatingBtn) floatingBtn.textContent = "Akun Saya";
@@ -449,6 +450,7 @@ onAuthStateChanged(auth, async (user) => {
   } else {
     form.style.display = "block";
     account.style.display = "none";
+    logoutButton.style.display = "none";
     status.textContent = "Masuk atau buat akun baru";
     loginBtn.textContent = "Masuk";
     if (floatingBtn) floatingBtn.textContent = "Login / Daftar";
